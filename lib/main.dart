@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login/login.dart';
 
 void main() {
   runApp(const MyApp());
@@ -7,17 +8,65 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  static const String_title = 'Login App';
+  static const stringTitle = 'Login App';
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: String_title,
+        title: stringTitle,
         home: Scaffold(
-          appBar: AppBar(title: const Text(String_title)),
+          appBar: AppBar(title: const Text(stringTitle)),
           body: const MyHomePage(),
         ));
+  }
+}
+
+class LogIn extends StatelessWidget{
+  const LogIn({Key? key}) : super(key: key);
+
+
+
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+      body: Center(
+        child: ElevatedButton(
+          child: const Text('Log In'),
+          onPressed: (){
+            Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const logIn()
+                )
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class SignUp extends StatelessWidget{
+  const SignUp({Key? key}) : super(key: key);
+
+
+
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+      body: Center(
+        child: ElevatedButton(
+          child: const Text('Sign Up'),
+          onPressed: (){
+            Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const SignUp()
+                )
+            );
+          },
+        ),
+      ),
+    );
   }
 }
 
@@ -43,79 +92,31 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-        padding: const EdgeInsets.all(10),
-        child: ListView(
-          children: <Widget>[
-            Container(
-              alignment: Alignment.center,
-              padding: const EdgeInsets.all(10),
-              child: const Text(
-                'Login',
-                style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 30),
-              )),
-            Container(
-              alignment: Alignment.center,
-              padding: const EdgeInsets.all(10),
-              child: const Text(
-                'Sign in',
-                style: TextStyle(fontSize: 20),
-              )),
-            Container(
-              padding: const EdgeInsets.all(10),
-              child: TextField(
-                controller: nameController,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'User Name',
-                ))),
-            Container(
-              padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
-              child: TextField(
-                obscureText: false,
-                controller: passwordController,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Password',
-                ),
-              ),
-            ),
-            TextButton(
-                onPressed: () {
-                  //forgot password screen
-                },
-              child: const Text('Forgot Password'),
-            ),
-            Container(
-              height: 50,
-              padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-              child: ElevatedButton(
-                child: const Text('Login'),
-                onPressed: (){
-                  print(nameController.text);
-                  print(passwordController.text);
-                },
-              )
-            ),
-            Row(
-              children: <Widget>[
-                const Text('Does not have account?'),
-                TextButton(
-                  child: const Text(
-                    'Sign Up',
-                    style: TextStyle(fontSize: 20),
-                  ),
-                    onPressed: () {
-                    //signup screen
-                    },
-                )
-              ],
-              mainAxisAlignment: MainAxisAlignment.center,
-            ),
-          ],
-        ));
+    return Scaffold(
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          ElevatedButton(
+          child: const Text('Sign Up'),
+          onPressed: (){
+            Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const SignUp())
+            );
+          },
+        ),
+          ElevatedButton(
+            child: const Text('Log In'),
+            onPressed: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const LogIn())
+              );
+            },
+          )
+        ]
+      ),
+    );
+
   }
 }

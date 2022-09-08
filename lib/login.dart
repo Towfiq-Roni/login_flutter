@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class login extends StatelessWidget {
-  const login({Key? key}) : super(key: key);
+class logIn extends StatelessWidget {
+  const logIn({Key? key}) : super(key: key);
 
   static const routeName = '/login';
 
@@ -9,9 +9,9 @@ class login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: String_title,
+        //title: String_title,
         home: Scaffold(
-          appBar: AppBar(title: const Text(String_title)),
+          //appBar: AppBar(title: const Text(String_title)),
           body: const MyHomePage(),
         ));
   }
@@ -90,8 +90,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: ElevatedButton(
                   child: const Text('Login'),
                   onPressed: (){
-                    print(nameController.text);
-                    print(passwordController.text);
+                    // print(nameController.text);
+                    // print(passwordController.text);
                   },
                 )
             ),
