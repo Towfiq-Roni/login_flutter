@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -18,9 +17,7 @@ class MyApp extends StatelessWidget {
         home: Scaffold(
           appBar: AppBar(title: const Text(String_title)),
           body: const MyHomePage(),
-        )
-        home:login(),
-    );
+        ));
   }
 }
 
