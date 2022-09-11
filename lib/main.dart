@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:login/login.dart';
+import 'package:login/signup.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,8 +27,6 @@ class MyApp extends StatelessWidget {
 class LogIn extends StatelessWidget{
   const LogIn({Key? key}) : super(key: key);
 
-
-
   @override
   Widget build(BuildContext context){
     return Scaffold(
@@ -49,8 +49,6 @@ class LogIn extends StatelessWidget{
 class SignUp extends StatelessWidget{
   const SignUp({Key? key}) : super(key: key);
 
-
-
   @override
   Widget build(BuildContext context){
     return Scaffold(
@@ -60,7 +58,7 @@ class SignUp extends StatelessWidget{
           onPressed: (){
             Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const SignUp()
+                MaterialPageRoute(builder: (context) => const signUp()
                 )
             );
           },
@@ -93,29 +91,34 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          ElevatedButton(
-          child: const Text('Sign Up'),
-          onPressed: (){
-            Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const SignUp())
-            );
-          },
-        ),
-          ElevatedButton(
-            child: const Text('Log In'),
+      // body: Center(
+      floatingActionButton: Center(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+            child: const Text('Sign Up'),
             onPressed: (){
               Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const LogIn())
+                  context,
+                  MaterialPageRoute(builder: (context) => const signUp())
               );
             },
-          )
-        ]
+          ),
+            ElevatedButton(
+              child: const Text('Log In'),
+              onPressed: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const logIn())
+                );
+              },
+            )
+          ]
+        ),
       ),
+    // ),
     );
 
   }

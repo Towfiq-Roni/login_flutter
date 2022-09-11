@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class SignUp extends StatelessWidget {
-  const SignUp({Key? key}) : super(key: key);
+class signUp extends StatelessWidget {
+  const signUp({Key? key}) : super(key: key);
 
-  static const routeName = '/login';
+  static const routeName = '/signup';
 
   // This widget is the root of your application.
   @override
@@ -46,7 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 alignment: Alignment.center,
                 padding: const EdgeInsets.all(10),
                 child: const Text(
-                  'Login',
+                  'Sign Up',
                   style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.w500,
@@ -68,6 +68,22 @@ class _MyHomePageState extends State<MyHomePage> {
                       labelText: 'User Name',
                     ))),
             Container(
+                padding: const EdgeInsets.all(10),
+                child: TextField(
+                    controller: nameController,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Full Name',
+                    ))),
+            Container(
+                padding: const EdgeInsets.all(10),
+                child: TextField(
+                    controller: nameController,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'E-Mail',
+                    ))),
+            Container(
               padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
               child: TextField(
                 obscureText: true,
@@ -75,6 +91,17 @@ class _MyHomePageState extends State<MyHomePage> {
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Password',
+                ),
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+              child: TextField(
+                obscureText: true,
+                controller: passwordController,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Confirm Password',
                 ),
               ),
             ),
@@ -88,27 +115,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 height: 50,
                 padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                 child: ElevatedButton(
-                  child: const Text('Login'),
+                  child: const Text('Sign Up'),
                   onPressed: (){
                     print(nameController.text);
                     print(passwordController.text);
                   },
                 )
-            ),
-            Row(
-              children: <Widget>[
-                const Text('Does not have account?'),
-                TextButton(
-                  child: const Text(
-                    'Sign Up',
-                    style: TextStyle(fontSize: 20),
-                  ),
-                  onPressed: () {
-                    //signup screen
-                  },
-                )
-              ],
-              mainAxisAlignment: MainAxisAlignment.center,
             ),
           ],
         ));
