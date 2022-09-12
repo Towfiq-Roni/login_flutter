@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:login/login.dart';
 import 'package:login/signup.dart';
+import 'package:email_validator/email_validator.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,57 +17,63 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: stringTitle,
-        home: Scaffold(
-          appBar: AppBar(title: const Text(stringTitle)),
-          body: const MyHomePage(),
-        ));
-  }
-}
-
-class LogIn extends StatelessWidget{
-  const LogIn({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context){
-    return Scaffold(
-      body: Center(
-        child: ElevatedButton(
-          child: const Text('Log In'),
-          onPressed: (){
-            Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const logIn()
-                )
-            );
-          },
-        ),
+      title: stringTitle,
+      home: Scaffold(
+        appBar: AppBar(title: const Text(stringTitle)),
+        body: const MyHomePage(),
       ),
+      //   initialRoute: '/home',
+      // routes: {
+      //     '/home': (context) => const logIn(),
+      // //   '/login': (context) => const signUp(),
+      // },
     );
   }
 }
 
-class SignUp extends StatelessWidget{
-  const SignUp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context){
-    return Scaffold(
-      body: Center(
-        child: ElevatedButton(
-          child: const Text('Sign Up'),
-          onPressed: (){
-            Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const signUp()
-                )
-            );
-          },
-        ),
-      ),
-    );
-  }
-}
+// class LogIn extends StatelessWidget{
+//   const LogIn({Key? key}) : super(key: key);
+//
+//   @override
+//   Widget build(BuildContext context){
+//     return Scaffold(
+//       body: Center(
+//         child: ElevatedButton(
+//           child: const Text('Log In'),
+//           onPressed: (){
+//             Navigator.push(
+//                 context,
+//                 MaterialPageRoute(builder: (context) => const logIn()
+//                 )
+//             );
+//           },
+//         ),
+//       ),
+//     );
+//   }
+// }
+//
+// class SignUp extends StatelessWidget{
+//   const SignUp({Key? key}) : super(key: key);
+//
+//   @override
+//   Widget build(BuildContext context){
+//     return Scaffold(
+//       body: Center(
+//         child: ElevatedButton(
+//           child: const Text('Sign Up'),
+//           onPressed: (){
+//             Navigator.push(
+//                 context,
+//                 MaterialPageRoute(builder: (context) => const signUp()
+//                 )
+//             );
+//           },
+//         ),
+//       ),
+//     );
+//   }
+// }
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -94,32 +101,43 @@ class _MyHomePageState extends State<MyHomePage> {
       // body: Center(
       floatingActionButton: Center(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ElevatedButton(
-            child: const Text('Sign Up'),
-            onPressed: (){
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const signUp())
-              );
-            },
-          ),
-            ElevatedButton(
-              child: const Text('Log In'),
-              onPressed: (){
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const logIn())
-                );
-              },
-            )
-          ]
-        ),
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                child: const Text('Sign Up'),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => signUp()));
+                },
+              ),
+              ElevatedButton(
+                child: const Text('Log In'),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => logIn()));
+                },
+              )
+            ]),
       ),
-    // ),
+      // ),
     );
-
   }
+// void validateEmail(String val){
+//   if(val.isEmpty){
+//     setState(() {
+//       _errorMessage = "E-Mail mustn't be empty";
+//     });
+//   }
+//   else if(!EmailValidator.validate(val, true)){
+//     setState(() {
+//       _errorMessage = "Enter valid E-mail address";
+//     });
+//   }
+//   else{
+//     setState(() {
+//       _errorMessage = "";
+//     });
+//   }
+// }
 }

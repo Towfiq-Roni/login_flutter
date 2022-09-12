@@ -1,4 +1,6 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:login/signup.dart';
 
 class logIn extends StatelessWidget {
   const logIn({Key? key}) : super(key: key);
@@ -8,12 +10,10 @@ class logIn extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        //title: String_title,
-        home: Scaffold(
-          //appBar: AppBar(title: const Text(String_title)),
-          body: const MyHomePage(),
-        ));
+    return const Scaffold(
+      //appBar: AppBar(title: const Text(String_title)),
+      body: MyHomePage(),
+    );
   }
 }
 
@@ -32,9 +32,11 @@ class MyHomePage extends StatefulWidget {
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
+
 class _MyHomePageState extends State<MyHomePage> {
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  String _errorMessage = '';
 
   @override
   Widget build(BuildContext context) {
@@ -60,13 +62,18 @@ class _MyHomePageState extends State<MyHomePage> {
                   style: TextStyle(fontSize: 20),
                 )),
             Container(
-                padding: const EdgeInsets.all(10),
-                child: TextField(
-                    controller: nameController,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'User Name',
-                    ))),
+              padding: const EdgeInsets.all(10),
+              child: TextFormField(
+                controller: nameController,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'E-Mail',
+                ),
+                onChanged: (val) {
+                  validateEmail(val);
+                },
+              ),
+            ),
             Container(
               padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
               child: TextField(
@@ -89,11 +96,17 @@ class _MyHomePageState extends State<MyHomePage> {
                 padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                 child: ElevatedButton(
                   child: const Text('Login'),
-                  onPressed: (){
+                  onPressed: () {
                     // print(nameController.text);
                     // print(passwordController.text);
                   },
-                )
+                )),
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: Text(
+                _errorMessage,
+                style: TextStyle(color: Colors.red),
+              ),
             ),
             Row(
               children: <Widget>[
@@ -105,6 +118,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   onPressed: () {
                     //signup screen
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => signUp()));
                   },
                 )
               ],
@@ -112,5 +127,21 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ],
         ));
+  }
+
+  void validateEmail(String val) {
+    if (val.isEmpty) {
+      setState(() {
+        _errorMessage = "E-Mail mustn't be empty";
+      });
+    } else if (!EmailValidator.validate(val, true)) {
+      setState(() {
+        _errorMessage = "Enter valid E-mail address";
+      });
+    } else {
+      setState(() {
+        _errorMessage = "";
+      });
+    }
   }
 }
