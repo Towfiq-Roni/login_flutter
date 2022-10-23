@@ -75,8 +75,7 @@ class ImageFromGalleryExState extends State<ImageFromGalleryEx> {
         ),
       ),
     ],
-    )
-    ,
+    ),
     );
   }
 }
